@@ -1,0 +1,59 @@
+﻿@page
+@model miniProjet1.Pages.IndexSModel
+@{
+}
+<br/><br/>
+
+<h1>Liste de Seances</h1>
+<hr/>
+<p>
+    <a asp-page="AjoutS" class="btn btn-success" role="button">Ajouter une Seance</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seance[0].dateS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seance[0].matiereID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seance[0].duree)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Seance) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.matiere.nom)
+            </td> 
+            <td>
+               @Convert.ToDateTime(item.dateS).ToString("dd/MM/yyyy hh:mm tt")
+            </td>
+            <td>
+                @foreach (var item2 in Model.ML)
+                {
+                    if(item2.id_mat==item.matiereID){
+                        @Html.DisplayFor(modelItem => item2.nom)
+                    }
+                    
+                }
+               
+            </td>
+            <td>
+                 @Html.DisplayFor(modelItem => item.duree)
+            </td>
+            <td>
+                <a asp-page="EditS" asp-route-id="@item.id_se" class="btn btn-primary"role="button">Edit</a> |
+                <a asp-page="DeleteS" asp-route-id="@item.id_se" class="btn btn-danger"role="button" onclick="return confirm('etes-vous sure de votre decision?')">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

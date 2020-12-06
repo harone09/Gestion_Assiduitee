@@ -1,0 +1,80 @@
+﻿@page
+@model miniProjet1.Pages.IndexEModel
+
+@{
+    ViewData["Title"] = "IndexE";
+}
+<br/><br/>
+
+<h1>Liste d'Etudiants</h1>
+<hr/>
+
+<p>
+    <a asp-page="AjoutE" class="btn btn-success"role="button">Ajouter un Etudiant</a>
+</p>
+<table class="table">
+    <thead>
+        <tr class="text-center">
+            <th>
+                #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Etudiant[0].nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Etudiant[0].prenom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Etudiant[0].dateN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Etudiant[0].contactT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Etudiant[0].contactM)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Etudiant[0].filiereID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Etudiant) {
+        <tr class="text-center">
+            <td>
+                @Html.DisplayFor(modelItem => item.id_etu)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contactT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contactM)
+            </td>
+            <td>
+                @foreach (var item2 in Model.FL)
+                {
+                    if(item2.id_fil==item.filiereID){
+                        @Html.DisplayFor(modelItem => item2.nom)
+                    }
+                    
+                }
+               
+            </td>
+            <td>
+                <a asp-page="EditE" asp-route-id="@item.id_etu" class="btn btn-primary"role="button">Edit</a> |
+                <a asp-page="DeleteE" asp-route-id="@item.id_etu" class="btn btn-danger"role="button"onclick="return confirm('etes-vous sure de votre decision?')">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

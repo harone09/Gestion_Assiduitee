@@ -1,0 +1,32 @@
+﻿@page
+@model miniProjet1.Pages.PointageModel
+@{
+}
+
+<h1>Pointer</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="POST" asp-page-handler="po">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             <div class="form-group">
+                <label asp-for="Presence.seanceID" class="control-label"></label>
+                <select asp-for="Presence.seanceID" class = "form-control">
+                    @foreach (var item in @Model.SL)
+                    {
+                        <option value="@item.id_se">@item.id_se</option>
+                    }
+                </select>
+                <span asp-validation-for="Presence.seanceID" class="text-danger"></span>
+               
+            </div>
+           
+            <div class="form-group">
+                <input type="text" asp-for="Presence.etudiantID"  placeholder="ID Etudiant" class="form-control" />
+                <input type="hidden" asp-for="Presence.Pre"  value="P" class="form-control" />
+            </div>
+        </form>
+    </div>
+</div>

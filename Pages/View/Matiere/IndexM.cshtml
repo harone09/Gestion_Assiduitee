@@ -1,0 +1,58 @@
+﻿@page
+@model miniProjet1.Pages.IndexMModel
+@{
+}
+<br/><br/>
+
+<h1>Liste de Matieres</h1>
+<hr/>
+<p>
+    <a asp-page="AjoutM" class="btn btn-success" role="button">Ajouter une Matiere</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Matiere[0].nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Matiere[0].filiereID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Matiere[0].professeurID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Matiere) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_mat)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.nom)
+            </td>
+            <td>
+               
+                        @Html.DisplayFor(modelItem => item.filiere.nom)
+                    
+               
+            </td>
+            <td>
+               
+                        <p>@Html.DisplayFor(modelItem => item.professeur.nom) @Html.DisplayFor(modelItem => item.professeur.prenom)</p>
+                       
+               
+            </td>
+            <td>
+                <a asp-page="EditM" asp-route-id="@item.id_mat" class="btn btn-primary"role="button">Edit</a> |
+                <a asp-page="DeleteM" asp-route-id="@item.id_mat" class="btn btn-danger"role="button" onclick="return confirm('etes-vous sure de votre decision?')">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

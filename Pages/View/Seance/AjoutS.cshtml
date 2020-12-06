@@ -1,0 +1,54 @@
+﻿@page
+@model miniProjet1.Pages.AjoutSModel
+@{
+}
+<h1>Ajout de Seance</h1>
+<hr/>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             
+             <div class="form-group">
+                <label asp-for="Seance.dateS" class="control-label"></label>
+                <input asp-for="Seance.dateS" type="datetime-local" value="2018-06-12T19:30" asp-format="{0:dd-MM-yyyy hh:mm }" class="form-control" />
+                <span asp-validation-for="Seance.dateS" class="text-danger"></span>
+            </div>
+
+
+             <div class="form-group">
+                <label asp-for="Seance.matiereID" class="control-label"></label>
+                <select asp-for="Seance.matiereID" class = "form-control">
+                    @foreach (var item in @Model.ML)
+                    {
+                        <option value="@item.id_mat">@item.nom</option>
+                    }
+                </select>
+                <span asp-validation-for="Seance.matiereID" class="text-danger"></span>
+               
+            </div>
+
+             <div class="form-group">
+                <label asp-for="Seance.duree" class="control-label"></label>
+                <select asp-for="Seance.duree" class = "form-control">
+                        <option value="1">1 h</option>
+                        <option value="1.5">1.5 h</option>
+                        <option value="2">2 h</option>
+                </select>
+                <span asp-validation-for="Seance.duree" class="text-danger"></span>
+               
+            </div>
+
+
+            
+            <div class="form-group">
+                <input class="form-control btn btn-primary" type="submit" value="Ajouter"/>
+            </div>
+        </form>
+    </div>
+</div>
+    <div>
+    <a asp-page="IndexS">Back to List</a>
+    </div>
+

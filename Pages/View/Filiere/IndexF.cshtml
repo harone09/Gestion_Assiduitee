@@ -1,0 +1,41 @@
+﻿@page
+@model miniProjet1.Pages.IndexFModel
+@{
+     ViewData["Title"] = "IndexF";
+}
+<br/><br/>
+
+<h1>Liste de Filieres</h1>
+<hr/>
+<p>
+    <a asp-page="AjoutF" class="btn btn-success" role="button">Ajouter une Filiere</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Filiere[0].nom)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Filiere) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_fil)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.nom)
+            </td>
+            <td>
+                <a asp-page="EditF" asp-route-id="@item.id_fil" class="btn btn-primary"role="button">Edit</a> |
+                <a asp-page="DeleteF" asp-route-id="@item.id_fil" class="btn btn-danger"role="button" onclick="return confirm('etes-vous sure de votre decision?')">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

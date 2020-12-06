@@ -1,0 +1,55 @@
+﻿@page
+@model miniProjet1.Pages.EditMModel
+@{
+}
+
+
+<h1>Edit</h1>
+
+<h4>Filiere</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Matiere.id_mat" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Matiere.nom" class="control-label"></label>
+                <input asp-for="Matiere.nom" class="form-control" />
+                <span asp-validation-for="Matiere.nom" class="text-danger"></span>
+            </div>
+                         <div class="form-group">
+                <label asp-for="Matiere.filiereID" class="control-label"></label>
+                <select asp-for="Matiere.filiereID" class = "form-control">
+                    @foreach (var item in @Model.FL)
+                    {
+                        <option value="@item.id_fil">@item.nom</option>
+                    }
+                </select>
+                <span asp-validation-for="Matiere.filiereID" class="text-danger"></span>
+               
+            </div>
+
+             <div class="form-group">
+                <label asp-for="Matiere.professeurID" class="control-label"></label>
+                <select asp-for="Matiere.professeurID" class = "form-control">
+                    @foreach (var item in @Model.PL)
+                    {
+                        <option value="@item.id_prof">@item.nom @item.prenom</option>
+                    }
+                </select>
+                <span asp-validation-for="Matiere.professeurID" class="text-danger"></span>
+               
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="IndexM">Back to List</a>
+</div>

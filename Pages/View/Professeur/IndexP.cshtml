@@ -1,0 +1,72 @@
+﻿@page
+@model miniProjet1.Pages.IndexPModel
+@{
+}
+<br/><br/>
+<h1>Liste de Professeurs</h1>
+<hr/>
+
+<p>
+    <a asp-page="AjoutP" class="btn btn-success" role="button">Ajouter un Professeur</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+             <th>
+                #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Professeur[0].nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Professeur[0].prenom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Professeur[0].dateN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Professeur[0].contactT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Professeur[0].contactM)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Professeur[0].login)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Professeur) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_prof)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contactT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contactM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.login)
+            </td>
+            
+            <td>
+                <a asp-page="EditP" asp-route-id="@item.id_prof" class="btn btn-primary"role="button">Edit</a> |
+                <a asp-page="DeleteP" asp-route-id="@item.id_prof" class="btn btn-danger"role="button" onclick="return confirm('etes-vous sure de votre decision?')">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

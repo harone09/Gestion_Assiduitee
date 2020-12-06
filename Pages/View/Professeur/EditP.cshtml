@@ -1,0 +1,49 @@
+﻿@page
+@model miniProjet1.Pages.EditPModel
+@{
+}
+
+<h1>Edit</h1>
+
+<h4>Professeur</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Professeur.id_prof" />
+            <div class="form-group">
+                <label asp-for="Professeur.nom" class="control-label"></label>
+                <input asp-for="Professeur.nom" class="form-control" />
+                <span asp-validation-for="Professeur.nom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Professeur.prenom" class="control-label"></label>
+                <input asp-for="Professeur.prenom" class="form-control" />
+                <span asp-validation-for="Professeur.prenom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Professeur.dateN" class="control-label"></label>
+                <input asp-for="Professeur.dateN" asp-format="{0:dd-MM-yyyy}"  class="form-control" />
+                <span asp-validation-for="Professeur.dateN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Professeur.contactT" class="control-label"></label>
+                <input asp-for="Professeur.contactT" class="form-control" />
+                <span asp-validation-for="Professeur.contactT" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Professeur.contactM" class="control-label"></label>
+                <input asp-for="Professeur.contactM" class="form-control" />
+                <span asp-validation-for="Professeur.contactM" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./IndexP">Back to List</a>
+</div>

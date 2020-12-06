@@ -1,0 +1,85 @@
+﻿@page
+@model miniProjet1.Pages.ListePrModel
+@{
+}
+<br/><br/>
+
+<h1>Liste de Presence</h1>
+<hr/>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+        <!--LEFT SIDE--------------------------------------->
+<div class="card" style="width: 15rem;">
+  <ul class="list-group list-group-flush">
+    <a href="#" class="list-group-item list-group-item-action active">Liste de Presence</a>
+    <a href="ListeAbs" class="list-group-item list-group-item-action ">Liste d'Absence</a>
+<a href="TauxAbs" class="list-group-item list-group-item-action ">Taux d'Absence par Matiere</a>
+     <a href="TauxAbsE" class="list-group-item list-group-item-action ">Taux d'Absence par Etudiant</a>
+
+  </ul>
+</div>
+    </div>
+    <div class="col-sm-9">
+        <!--RIGHT SIDE--------------------------------------->
+        <div class="col-4">
+        <form method="POST">
+         <select  class = "form-control" asp-for="@Model.Mid" id="_MAT" onchange="this.form.submit()">
+             <option value="0" selected disabled >Matieres</option>
+                    @foreach (var item in @Model.SL)
+                    {
+                        <option value="@item.matiere.id_mat">@item.matiere.nom</option>
+                    }
+                </select>
+                </form>
+            </div>
+
+
+
+<div  class="col-10">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Presence[0].seance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Presence[0].etudiant)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    @foreach (var item in Model.Presence) {
+       
+        <tr>
+           <td>
+                 @Html.DisplayFor(modelItem => item.id_pre)
+            </td>
+            <td>
+               
+                        @Html.DisplayFor(modelItem => item.seanceID)
+                    
+               
+            </td>
+            <td>
+               
+                        <p>@Html.DisplayFor(modelItem => item.etudiant.nom) @Html.DisplayFor(modelItem => item.etudiant.prenom)</p>
+                        
+               
+            </td>
+          
+        </tr>
+    }
+    </tbody>
+</table>
+</div>
+
+    </div>
+  </div>
+
